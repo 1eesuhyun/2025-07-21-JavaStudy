@@ -44,12 +44,70 @@ package com.sist.main;
  *                     Parent가 가지고 있는 메소드 호출 => 메소드의 주소 변경
  *                     Child가 오버라이딩 메소드 호출
  *         Parent가 가지고 있는 변수
- *         
- *         
+ *         상속의 목적
+ *          = 코드 재사용**
+ *          = 유지보수 효율성 =>기능을 미리 알고 있다(보수가 편하다) => 현재에 맞게 변경
+ *          = 소스가 간결
+ *          = 반복 제거
+ *          *** 가독성, 재사용, 수정용이, 최적화
  *      2) 특징
- *      3) 메소드 재정의(오버라이딩)
+ *          = 단일 상속만 가능
+ *            ------ 인터페이스는 다중 상속 가능
+ *          = 모든 클래스는 Object클래스가 최상위 클래스다
+ *                       Object상속을 받고 있음
+ *          = private은 직접 접근이 불가능 => getter/setter를 이용해 접근 가능
+ *          = 상위 클래스는 공통적으로 가지고 있는 변수/메소드
+ *            하위 클래스는 메소드를 필요시에 변경해서 사용 (오버라이딩)
+ *             |
+ *      3) 메소드 재정의(오버라이딩) => 프로그램에 맞게 구현
+ *         조건)
+ *             상속 ====> 익명의 클래스
+ *             메소드명이 동일
+ *             리턴형이 동일
+ *             매개변수가 동일
+ *             접근지정어 확장이 가능
+ *             ----------------
+ *             private < default < protected < public
+ *             => 모든 메소드 public로 만든다
+ *             
+ *             interface A
+ *             {
+ *                (public abstract)void display();
+ *             }
+ *             class B implements A
+ *             {
+ *                public void display()
+ *                {
+ *                }
+ *             }
  *      4) 형변환
+ *         1. 자동형변환
+ *            클래스는 크기 결정 : 상속 / 포함
+ *         2. 강제형변환
  *         
+ *         class A
+ *         
+ *         A < Object
+ *         
+ *         ==========> 객체 크기 비교
+ *                    객체명 instanceof 클래스명
+ *         Object obj
+ *         String str
+ *         StringBuffer sb
+ *         
+ *         String StringBuffer은 동등한 위치에 있어 비교가 불가능
+ *         
+ *         1. 자동 형변환
+ *            class A
+ *            class B extends A
+ *            
+ *            A > B
+ *            A a=new A();
+ *            B b=new B();
+ *            A c=b;
+ *            
+ *            사용자 정의 데이터형 / 기본형
+ *            --------------- 메모리 크기 제작
  */
 class Parent
 {
@@ -91,7 +149,19 @@ public class 정리_3 {
 		// 메소드는 Child가 가지고 있는 오버라이딩된 메소드 호출
 		pp.aaa();
 		System.out.println();
+		Object obj=new Object();
+		String str="";
+		StringBuffer sb=new StringBuffer();
 		
+		if(str instanceof Object)
+			System.out.println("TRUE");
+		if(sb instanceof Object)
+			System.out.println("TRUE");
+		if(obj instanceof String)
+			System.out.println("TRUE");
+		else
+			System.out.println("FASLE");
+		//if(str instanceof StringBuffer) // 상속관계가 아니기 때문에 오류(크기 비교 불가)
 	}
 
 }
